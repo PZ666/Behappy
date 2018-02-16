@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>time</title>
+    <style>
+        .time{
+            width:200px;
+            height:50px;
+            background: #000;
+            color: #0f0;
+            font-size: 30px;
+            line-height:50px;
+            border-radius:50px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="time">
+        <span id="tt"></span>
+    </div>
+    <br>
+    <button id="stop">停止</button>
+    <button id="start">开始</button>
+    <p>请输入手机号码</p>
+    <input type="text" id="phoneNumber" value="123">
+
+    <button id="btn1">提交</button>
+    <p>请输入邮箱</p>
+    <input type="text" id="email" value="邮箱">
+    <button id="btn2">提交</button>
+</body>
+<script>
+    function getDate() {
+        dobj=new Date();
+        hour=dobj.getHours();
+        if (hour<10){
+            hour='0'+hour;
+        }
+        minute=dobj.getMinutes();
+        if (minute<10){
+            minute='0'+minute;
+        }
+        second=dobj.getSeconds();
+        if (second<10){
+            second='0'+second;
+        }
+        strT=hour+':'+minute+':'+second;
+        tt=document.getElementById('tt');
+        tt.innerHTML=strT;
+    }
+    getDate();
+    bidobj=setInterval(getDate,1000);
+    stop1=document.getElementById('stop');
+    stop1.onclick=function () {
+        clearInterval(bidobj);
+    }
+    start=document.getElementById('start');
+    start.onclick=function () {
+        bidobj=setInterval(getDate,1000);
+    }
+    numP=document.getElementById('phoneNumber')
+
+
+    btn=document.getElementById('btn1');
+    btn.onclick=function () {
+        phone=numP.value;
+        alert(phone);
+
+        if(phone.match(/^155\d{8}$/i)){
+            alert('phone number is ok');
+        }else{
+            alert('phone number is wrong');
+        }
+    }
+    email=document.getElementById('email')
+    btn2=document.getElementById('btn2');
+    btn2.onclick=function () {
+        emailStr=email.value;
+        if(emailStr.match(/^\w+@\w+\.\w+$/i)){
+            alert('email is ok');
+        }else{
+            alert(' email is wrong');
+        }
+    }
+
+
+
+
+</script>
+</html>
